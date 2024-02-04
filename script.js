@@ -1,5 +1,5 @@
 const myLibrary = [];
-const d
+const library = document.querySelector('.library');
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -23,7 +23,9 @@ function addBookToLibrary() {
 
 // Display books in library on page
 function displayBooks() {
-    myLibrary.forEach()
+    myLibrary.forEach(book => {
+        // Add book as a li to 
+    })
 } 
 
 // Test
