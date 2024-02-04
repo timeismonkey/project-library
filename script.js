@@ -1,5 +1,5 @@
 const myLibrary = [];
-const library = document.querySelector('.library');
+const libraryBody = document.querySelector('.library-body');
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -21,10 +21,11 @@ function addBookToLibrary() {
     // Add the book to library
 }
 
-// Display books in library on page
+// Display books in myLibrary on page
 function displayBooks() {
     myLibrary.forEach(book => {
-        // Add book as a li to 
+        // Add book as a row in .library
+        libraryBody.innerHTML += `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read ? 'Yes' : 'No'}</td></tr>`;
     })
 } 
 
@@ -40,3 +41,5 @@ myLibrary.push(book1)
 myLibrary.push(book2)
 myLibrary.push(book3)
 myLibrary.push(book4)
+
+displayBooks();
