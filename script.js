@@ -1,5 +1,6 @@
 const myLibrary = [];
 const libraryBody = document.querySelector('.library-body');
+const bookDialog = document.querySelector('#book-dialog');
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -18,6 +19,10 @@ function addBookToLibrary() {
     // do stuff here
 }
 
+function showDialog () {
+    
+}
+
 // Display books in table on page
 function displayBooks() {
     myLibrary.forEach(
@@ -29,6 +34,9 @@ function displayBooks() {
             }</td></tr>`)
     );
 }
+
+
+
 
 // Test
 
