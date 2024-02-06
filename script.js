@@ -77,21 +77,6 @@ function createBookRow(book) {
     tr.appendChild(readBtn);
 
     return tr
-
-    // myLibrary.forEach((book) => {
-    //     authorTd.textContent = book.author;
-    //     pagesTd.textContent = book.pages;
-    //     readTd.textContent = book.read ? 'yes' : 'no';
-    // });
-    // (libraryBody.innerHTML +=
-    // `<tr>
-    //     <td>${book.title}</td>
-    //     <td>${book.author}</td>
-    //     <td>${book.pages}</td>
-    //     <td>${book.read ? 'yes' : 'no'}</td>
-    //     <td>${removeBtn}</td>
-    //     <td>${addBookBtn}</td>
-    // </tr>`));
 }
 
 addBookBtn.addEventListener('click', () => bookDialog.showModal());
