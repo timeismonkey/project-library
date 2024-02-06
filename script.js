@@ -27,47 +27,81 @@ function addBookToLibrary() {
     const title = inputs[0].value;
     const author = inputs[1].value;
     const pages = inputs[2].value;
-    const read = bookForm.querySelector('#read').value === 'No' ? false : true;
+    const read = bookForm.querySelector('#read').value === 'no' ? false : true;
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
+
+    return book
+}
+
+// This function will be more useful once we are pulling data from a db
+// It will show the initial books in db, when page loads
+// function displayBooks() {
+//     myLibrary.forEach((book) => libraryBody.appendChild(createBookRow(book)))
+// }
+
+function displayBook(book) {
+    libraryBody.appendChild(createBookRow(book));
 }
 
 // Display books in table on page
-function displayBooks() {
-    myLibrary.forEach(
-        (book) =>
-            (libraryBody.innerHTML += `<tr><td>${book.title}</td><td>${
-                book.author
-            }</td><td>${book.pages}</td><td>${
-                book.read ? 'yes' : 'no'
-            }</td></tr>`)
-    );
+function createBookRow(book) {
+    const tr = document.createElement('tr');
+
+    const titleTd = document.createElement('td');
+    tr.appendChild(titleTd);
+    titleTd.textContent = book.title;
+
+
+    const authorTd = document.createElement('td');
+    tr.appendChild(authorTd);
+    authorTd.textContent = book.author;
+
+    const pagesTd = document.createElement('td');
+    tr.appendChild(pagesTd);
+    pagesTd.textContent = book.pages;
+
+    const readTd = document.createElement('td');
+    tr.appendChild(readTd);
+    readTd.textContent = book.read ? 'Yes' : 'No';
+
+    const removeBtn = document.createElement('button');
+    const readBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    readBtn.textContent = 'Read';
+    removeBtn.setAttribute('class', 'book-button');
+    readBtn.setAttribute('class', 'book-button');
+    removeBtn.setAttribute('id', 'remove-button');
+    readBtn.setAttribute('id', 'read-button');
+    tr.appendChild(removeBtn);
+    tr.appendChild(readBtn);
+
+    return tr
+
+    // myLibrary.forEach((book) => {
+    //     authorTd.textContent = book.author;
+    //     pagesTd.textContent = book.pages;
+    //     readTd.textContent = book.read ? 'yes' : 'no';
+    // });
+    // (libraryBody.innerHTML +=
+    // `<tr>
+    //     <td>${book.title}</td>
+    //     <td>${book.author}</td>
+    //     <td>${book.pages}</td>
+    //     <td>${book.read ? 'yes' : 'no'}</td>
+    //     <td>${removeBtn}</td>
+    //     <td>${addBookBtn}</td>
+    // </tr>`));
 }
 
 addBookBtn.addEventListener('click', () => bookDialog.showModal());
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary();
-    displayBooks();
+    book = addBookToLibrary();
+    displayBook(book);
 });
 cancelModal.addEventListener('click', (e) => {
     e.preventDefault();
     bookDialog.close();
 });
-confirmModal.addEventListener('click', (e) => bookDialog.close())
-
-
-// Test
-
-// Add test books
-// const book1 = new Book('Book1', 'me', 30, false);
-// const book2 = new Book('Book2', 'you', 35, true);
-// const book3 = new Book('Book3', 'we', 40, false);
-// const book4 = new Book('Book4', 'he', 45, false);
-
-// myLibrary.push(book1);
-// myLibrary.push(book2);
-// myLibrary.push(book3);
-// myLibrary.push(book4);
-
-displayBooks();
+confirmModal.addEventListener('click', (e) => bookDialog.close());
