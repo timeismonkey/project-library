@@ -6,7 +6,6 @@ const cancelModal = document.querySelector('#cancel-button');
 const confirmModal = document.querySelector('#confirm-button');
 
 const myLibrary = [];
-console.log(myLibrary);
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -82,6 +81,7 @@ function createBookRow(book) {
 addBookBtn.addEventListener('click', () => bookDialog.showModal());
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    addBookToLibrary()
     book = addBookToLibrary();
     displayBook(book);
 });
