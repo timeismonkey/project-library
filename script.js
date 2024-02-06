@@ -30,7 +30,6 @@ function addBookToLibrary() {
     const read = bookForm.querySelector('#read').value === 'No' ? false : true;
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
-    displayBooks();
 }
 
 // Display books in table on page
@@ -49,6 +48,7 @@ addBookBtn.addEventListener('click', () => bookDialog.showModal());
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
     addBookToLibrary();
+    displayBooks();
 });
 cancelModal.addEventListener('click', (e) => {
     e.preventDefault();
