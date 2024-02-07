@@ -87,6 +87,30 @@ bookForm.addEventListener('submit', (e) => {
 });
 cancelModal.addEventListener('click', (e) => {
     e.preventDefault();
+    console.log('Cancel');
     bookDialog.close();
 });
-confirmModal.addEventListener('click', (e) => bookDialog.close());
+confirmModal.addEventListener('click', (e) => {
+    bookDialog.close()
+    console.log('Confirm');
+});
+
+// Deal with 'Enter' key press in modal
+// document.addEventListener('click', (event) => {
+//     console.log(bookDialog.open);
+//     if (bookDialog.open) {
+//         event.preventDefault
+//         let key = event.which || event.keyCode;
+//         if (key === 13) {
+//             bookForm.submit();
+//         }
+//     }
+// })
+bookDialog.addEventListener('keypress', (event) => {
+    let key = event.which || event.keyCode;
+    if (key === 13) {
+        console.log('Enter');
+        event.preventDefault();
+        bookForm.dispatchEvent(new Event('submit'));
+    }
+})
