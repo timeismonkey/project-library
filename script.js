@@ -20,8 +20,8 @@ Book.prototype.info = function () {
         : `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
 };
 
-Book.prototype.changeRead = function () {
-    this.read ? (this.read = false) : (this.read = true);
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
 };
 
 function addBookToLibrary() {
@@ -30,6 +30,10 @@ function addBookToLibrary() {
     const author = inputs[1].value;
     const pages = inputs[2].value;
     const read = bookForm.querySelector('#read').value === 'no' ? false : true;
+
+    // Validate input
+
+
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 
@@ -90,7 +94,7 @@ function createBookRow(book) {
         let bookIndex = bookRow.dataset.index;
         let readTableDataElement = bookRow.querySelector('#read-table-data');
         let book = myLibrary[bookIndex];
-        book.changeRead();
+        book.toggleRead();
         readTableDataElement.textContent = book.read ? 'Yes' : 'No';
     });
 
