@@ -21,7 +21,6 @@ Book.prototype.info = function () {
 };
 
 function addBookToLibrary() {
-    // Deal with form input
     const inputs = bookForm.querySelectorAll('input');
     const title = inputs[0].value;
     const author = inputs[1].value;
@@ -77,20 +76,23 @@ addBookBtn.addEventListener('click', () => bookDialog.showModal());
 // Deal with submission of bookForm data
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    // addBookToLibrary()
-    book = addBookToLibrary();
+    let book = addBookToLibrary();
     displayBook(book);
+
+    // Clear form data
+    let bookFormInputs = bookForm.querySelectorAll('input');
+    let bookFormSelects = bookForm.querySelector('select');
+    bookFormInputs.forEach((input) => input.value = '');
+    bookFormSelects.selectedIndex = 1;    
 });
 
 cancelModal.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('Cancel');
     bookDialog.close();
 });
 
 confirmModal.addEventListener('click', (e) => {
     bookDialog.close()
-    console.log('Confirm');
 });
 
 // Deal with 'Enter' key being used to close modal
