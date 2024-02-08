@@ -20,16 +20,20 @@ Book.prototype.info = function () {
         : `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
 };
 
+Book.prototype.changeRead = function () {
+    this.read ? (this.read = false) : (this.read = true);
+};
+
 function addBookToLibrary() {
     const inputs = bookForm.querySelectorAll('input');
     const title = inputs[0].value;
     const author = inputs[1].value;
     const pages = inputs[2].value;
-    const read = bookForm.querySelector('#read').value === 'no' ? false : true;    
+    const read = bookForm.querySelector('#read').value === 'no' ? false : true;
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 
-    return book
+    return book;
 }
 
 function removeBookFromLibrary(event) {
@@ -52,7 +56,6 @@ function createBookRow(book) {
     tr.appendChild(titleTd);
     titleTd.textContent = book.title;
 
-
     const authorTd = document.createElement('td');
     tr.appendChild(authorTd);
     authorTd.textContent = book.author;
@@ -62,6 +65,7 @@ function createBookRow(book) {
     pagesTd.textContent = book.pages;
 
     const readTd = document.createElement('td');
+    readTd.setAttribute('id', 'read-table-data');
     tr.appendChild(readTd);
     readTd.textContent = book.read ? 'Yes' : 'No';
 
@@ -73,18 +77,27 @@ function createBookRow(book) {
     readBtn.setAttribute('class', 'book-button');
     removeBtn.setAttribute('id', 'remove-button');
     readBtn.setAttribute('id', 'read-button');
+
     removeBtn.addEventListener('click', (event) => {
         removeBookFromLibrary(event);
         // Remove book from table
-        bookRow = event.target.parentElement;
-        libraryBody.removeChild(bookRow); 
+        let bookRow = event.target.parentElement;
+        libraryBody.removeChild(bookRow);
     });
-    // readBtn.addEventListener('click', )
+
+    readBtn.addEventListener('click', (event) => {
+        let bookRow = event.target.parentElement;
+        let bookIndex = bookRow.dataset.index;
+        let readTableDataElement = bookRow.querySelector('#read-table-data');
+        let book = myLibrary[bookIndex];
+        book.changeRead();
+        readTableDataElement.textContent = book.read ? 'Yes' : 'No';
+    });
 
     tr.appendChild(removeBtn);
     tr.appendChild(readBtn);
 
-    return tr
+    return tr;
 }
 
 addBookBtn.addEventListener('click', () => bookDialog.showModal());
@@ -98,8 +111,8 @@ bookForm.addEventListener('submit', (e) => {
     // Clear form data
     let bookFormInputs = bookForm.querySelectorAll('input');
     let bookFormSelects = bookForm.querySelector('select');
-    bookFormInputs.forEach((input) => input.value = '');
-    bookFormSelects.selectedIndex = 1;    
+    bookFormInputs.forEach((input) => (input.value = ''));
+    bookFormSelects.selectedIndex = 1;
 });
 
 cancelModal.addEventListener('click', (e) => {
@@ -108,7 +121,7 @@ cancelModal.addEventListener('click', (e) => {
 });
 
 confirmModal.addEventListener('click', (e) => {
-    bookDialog.close()
+    bookDialog.close();
 });
 
 // Deal with 'Enter' key being used to close modal
@@ -119,8 +132,7 @@ bookDialog.addEventListener('keypress', (event) => {
         bookForm.dispatchEvent(new Event('submit'));
         bookDialog.close();
     }
-})
-
+});
 
 // This function will be more useful once we are pulling data from a db
 // It will show the initial books in db, when page loads
