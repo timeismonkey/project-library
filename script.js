@@ -79,37 +79,30 @@ function createBookRow(book) {
 }
 
 addBookBtn.addEventListener('click', () => bookDialog.showModal());
+
+// Deal with submission of bookForm data
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
     addBookToLibrary()
     book = addBookToLibrary();
     displayBook(book);
 });
+
 cancelModal.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('Cancel');
     bookDialog.close();
 });
+
 confirmModal.addEventListener('click', (e) => {
     bookDialog.close()
     console.log('Confirm');
 });
 
-// Deal with 'Enter' key press in modal
-// document.addEventListener('click', (event) => {
-//     console.log(bookDialog.open);
-//     if (bookDialog.open) {
-//         event.preventDefault
-//         let key = event.which || event.keyCode;
-//         if (key === 13) {
-//             bookForm.submit();
-//         }
-//     }
-// })
+// Deal with 'Enter' key being used to close modal
 bookDialog.addEventListener('keypress', (event) => {
     let key = event.which || event.keyCode;
     if (key === 13) {
-        console.log('Enter');
         event.preventDefault();
         bookForm.dispatchEvent(new Event('submit'));
     }
