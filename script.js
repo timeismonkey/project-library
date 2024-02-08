@@ -32,8 +32,10 @@ function addBookToLibrary() {
     return book
 }
 
-function removeBookFromLibrary() {
-
+function removeBookFromLibrary(event) {
+    let bookRow = event.target.parentElement;
+    let bookIndex = bookRow.dataset.index;
+    myLibrary.splice(bookIndex, 1);
 }
 
 function displayBook(book) {
@@ -71,9 +73,13 @@ function createBookRow(book) {
     readBtn.setAttribute('class', 'book-button');
     removeBtn.setAttribute('id', 'remove-button');
     readBtn.setAttribute('id', 'read-button');
-    removeBtn.addEventListener('click', removeBookFromLibrary);
+    removeBtn.addEventListener('click', (event) => {
+        removeBookFromLibrary(event);
+        // Remove book from table
+        bookRow = event.target.parentElement;
+        libraryBody.removeChild(bookRow); 
+    });
     // readBtn.addEventListener('click', )
-
 
     tr.appendChild(removeBtn);
     tr.appendChild(readBtn);
