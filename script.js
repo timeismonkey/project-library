@@ -89,14 +89,7 @@ function createBookRow(book) {
         libraryBody.removeChild(bookRow);
     });
 
-    readBtn.addEventListener('click', (event) => {
-        let bookRow = event.target.parentElement;
-        let bookIndex = bookRow.dataset.index;
-        let readTableDataElement = bookRow.querySelector('#read-table-data');
-        let book = myLibrary[bookIndex];
-        book.toggleRead();
-        readTableDataElement.textContent = book.read ? 'Yes' : 'No';
-    });
+    readBtn.addEventListener('click', updateReadStatus);
 
     tr.appendChild(removeBtn);
     tr.appendChild(readBtn);
@@ -104,19 +97,26 @@ function createBookRow(book) {
     return tr;
 }
 
-addBookBtn.addEventListener('click', () => bookDialog.showModal());
+function updateReadStatus(event) {
+    let bookRow = event.target.parentElement;
+    let bookIndex = bookRow.dataset.index;
+    let readTableDataElement = bookRow.querySelector('#read-table-data');
+    let book = myLibrary[bookIndex];
+    book.toggleRead();
+    readTableDataElement.textContent = book.read ? 'Yes' : 'No';
+}
+
+
+addBookBtn.addEventListener('click', () => {
+    bookForm.reset();
+    bookDialog.showModal()
+});
 
 // Deal with submission of bookForm data
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let book = addBookToLibrary();
     displayBook(book);
-
-    // Clear form data
-    let bookFormInputs = bookForm.querySelectorAll('input');
-    let bookFormSelects = bookForm.querySelector('select');
-    bookFormInputs.forEach((input) => (input.value = ''));
-    bookFormSelects.selectedIndex = 1;
 });
 
 cancelModal.addEventListener('click', (e) => {
