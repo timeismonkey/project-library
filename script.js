@@ -25,7 +25,7 @@ function addBookToLibrary() {
     const title = inputs[0].value;
     const author = inputs[1].value;
     const pages = inputs[2].value;
-    const read = bookForm.querySelector('#read').value === 'no' ? false : true;
+    const read = bookForm.querySelector('#read').value === 'no' ? false : true;    
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 
@@ -39,6 +39,8 @@ function displayBook(book) {
 // Display books in table on page
 function createBookRow(book) {
     const tr = document.createElement('tr');
+    // Associate row with index of book in library
+    tr.dataset.index = myLibrary.length - 1;
 
     const titleTd = document.createElement('td');
     tr.appendChild(titleTd);
