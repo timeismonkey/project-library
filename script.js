@@ -33,12 +33,6 @@ function addBookToLibrary() {
     return book
 }
 
-// This function will be more useful once we are pulling data from a db
-// It will show the initial books in db, when page loads
-// function displayBooks() {
-//     myLibrary.forEach((book) => libraryBody.appendChild(createBookRow(book)))
-// }
-
 function displayBook(book) {
     libraryBody.appendChild(createBookRow(book));
 }
@@ -83,7 +77,7 @@ addBookBtn.addEventListener('click', () => bookDialog.showModal());
 // Deal with submission of bookForm data
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary()
+    // addBookToLibrary()
     book = addBookToLibrary();
     displayBook(book);
 });
@@ -105,5 +99,13 @@ bookDialog.addEventListener('keypress', (event) => {
     if (key === 13) {
         event.preventDefault();
         bookForm.dispatchEvent(new Event('submit'));
+        bookDialog.close();
     }
 })
+
+
+// This function will be more useful once we are pulling data from a db
+// It will show the initial books in db, when page loads
+// function displayBooks() {
+//     myLibrary.forEach((book) => libraryBody.appendChild(createBookRow(book)))
+// }
