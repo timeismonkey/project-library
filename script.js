@@ -32,6 +32,10 @@ function addBookToLibrary() {
     return book
 }
 
+function removeBookFromLibrary() {
+
+}
+
 function displayBook(book) {
     libraryBody.appendChild(createBookRow(book));
 }
@@ -67,6 +71,10 @@ function createBookRow(book) {
     readBtn.setAttribute('class', 'book-button');
     removeBtn.setAttribute('id', 'remove-button');
     readBtn.setAttribute('id', 'read-button');
+    removeBtn.addEventListener('click', removeBookFromLibrary);
+    // readBtn.addEventListener('click', )
+
+
     tr.appendChild(removeBtn);
     tr.appendChild(readBtn);
 
