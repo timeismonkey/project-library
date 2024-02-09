@@ -88,7 +88,6 @@ function createBookRow(book) {
         let bookRow = event.target.parentElement;
         libraryBody.removeChild(bookRow);
     });
-
     readBtn.addEventListener('click', updateReadStatus);
 
     tr.appendChild(removeBtn);
@@ -115,6 +114,7 @@ addBookBtn.addEventListener('click', () => {
 // Deal with submission of bookForm data
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    console.log('Submission!');
     let book = addBookToLibrary();
     displayBook(book);
 });
@@ -125,16 +125,21 @@ cancelModal.addEventListener('click', (e) => {
 });
 
 confirmModal.addEventListener('click', (e) => {
-    bookDialog.close();
+    if (bookForm.checkValidity()) {
+        bookDialog.close();
+    }
 });
 
 // Deal with 'Enter' key being used to close modal
-bookDialog.addEventListener('keypress', (event) => {
+bookForm.addEventListener('keypress', (event) => {
     let key = event.which || event.keyCode;
     if (key === 13) {
         event.preventDefault();
-        bookForm.dispatchEvent(new Event('submit'));
-        bookDialog.close();
+
+        if (bookForm.reportValidity()) {
+            bookForm.dispatchEvent(new Event('submit'));
+            bookDialog.close();
+        }
     }
 });
 
