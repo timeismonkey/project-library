@@ -38,62 +38,16 @@ function addBookToLibrary() {
     return book;
 }
 
-function removeBookFromLibrary(bookCard) {
+function removeBookFromLibrary(bookElement) {
     let bookIndex = bookCard.dataset.index;
     myLibrary.splice(bookIndex, 1);
 }
 
 function displayBook(book) {
-    libraryBody.appendChild(createBookRow(book));
+    cardContainer.appendChild(createBookCard(book));
 }
 
-// Display books in table on page
-function createBookRow(book) {
-    const tr = document.createElement('tr');
-    // Associate row with index of book in library
-    tr.dataset.index = myLibrary.length - 1;
-
-    const titleTd = document.createElement('td');
-    tr.appendChild(titleTd);
-    titleTd.textContent = book.title;
-
-    const authorTd = document.createElement('td');
-    tr.appendChild(authorTd);
-    authorTd.textContent = book.author;
-
-    const pagesTd = document.createElement('td');
-    tr.appendChild(pagesTd);
-    pagesTd.textContent = book.pages;
-
-    const readTd = document.createElement('td');
-    readTd.setAttribute('id', 'read-table-data');
-    tr.appendChild(readTd);
-    readTd.textContent = book.read ? 'Yes' : 'No';
-
-    const removeBtn = document.createElement('button');
-    const readBtn = document.createElement('button');
-    removeBtn.textContent = 'Remove';
-    readBtn.textContent = 'Read';
-    removeBtn.setAttribute('class', 'book-button');
-    readBtn.setAttribute('class', 'book-button');
-    removeBtn.setAttribute('id', 'remove-button');
-    readBtn.setAttribute('id', 'read-button');
-
-    removeBtn.addEventListener('click', (event) => {
-        removeBookFromLibrary(event);
-        // Remove book from table
-        let bookRow = event.target.parentElement;
-        libraryBody.removeChild(bookRow);
-    });
-    readBtn.addEventListener('click', updateReadStatus);
-
-    tr.appendChild(removeBtn);
-    tr.appendChild(readBtn);
-
-    return tr;
-}
-
-function createBookCard() {
+function createBookCard(book) {
     const bookCard = document.createElement('div');
     const bookCardTitle = document.createElement('p');
     const bookCardAuthor = document.createElement('p');
@@ -130,11 +84,15 @@ function createBookCard() {
 
     removeBtn.addEventListener('click', (event) => {
         const targetBookCard = event.target.parentElement.parentElement;
+        console.log(targetBookCard);
         removeBookFromLibrary(targetBookCard);
         // Remove book from card-container
         cardContainer.removeChild(targetBookCard);
     });
     readBtn.addEventListener('click', updateReadStatus);
+
+    bookCard.appendChild(removeBtn);
+    bookCard.appendChild(readBtn);
 
     return bookCard
 } 
