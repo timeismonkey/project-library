@@ -33,9 +33,7 @@ function addBookToLibrary() {
     const read = bookForm.querySelector('#read').value === 'no' ? false : true;
 
     const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-
-    const index = myLibrary.length - 1;
+    const index = myLibrary.push(book); - 1;
 
     return [book, index];
 }
@@ -45,8 +43,8 @@ function removeBookFromLibrary(bookCard) {
     myLibrary.splice(bookIndex, 1);
 }
 
-function displayBook(book) {
-    cardContainer.appendChild(createBookCard(book));
+function displayBook(book, index) {
+    cardContainer.appendChild(createBookCard(book, index));
 }
 
 function displayBooks() {
