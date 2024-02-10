@@ -43,6 +43,11 @@ function removeBook(index) {
     displayBooks();
 }
 
+function updateReadStatus(book, bookCardRead) {
+    book.toggleRead();
+    bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
+}
+
 function displayBook(book, index) {
     cardContainer.appendChild(createBookCard(book, index));
 }
@@ -58,7 +63,6 @@ function createBookCard(book, index) {
     const bookCard = document.createElement('div');
     bookCard.setAttribute('class', 'book-card');
     bookCard.dataset.index = index;
-    console.log(index);
 
     const bookCardTitle = document.createElement('p');
     bookCardTitle.setAttribute('class', 'book-card-title');
@@ -104,22 +108,14 @@ function createBookCard(book, index) {
     return bookCard;
 }
 
-function updateReadStatus(book, bookCardRead) {
-    book.toggleRead();
-    bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
-}
-
 addBookBtn.addEventListener('click', () => {
     bookForm.reset();
     bookDialog.showModal();
 });
 
-// Deal with submission of bookForm data
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const [book, index] = addBookToLibrary();
-    console.log(book);
-    console.log(index);
     displayBook(book, index);
 });
 
