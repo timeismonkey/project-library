@@ -49,9 +49,10 @@ function displayBook(book, index) {
 
 function displayBooks() {
     cardContainer.innerHTML = '';
-    myLibrary.forEach((book, index) => cardContainer.appendChild(createBookCard(book, index)))
+    myLibrary.forEach((book, index) =>
+        cardContainer.appendChild(createBookCard(book, index))
+    );
 }
-
 
 function createBookCard(book, index) {
     const bookCard = document.createElement('div');
@@ -80,31 +81,21 @@ function createBookCard(book, index) {
     bookCard.appendChild(bookCardRead);
 
     const bookCardButtons = document.createElement('div');
-    bookCardButtons.setAttribute('class', 'book-card-buttons')
+    bookCardButtons.setAttribute('class', 'book-card-buttons');
 
     const removeBtn = document.createElement('button');
     removeBtn.setAttribute('id', 'remove-button');
     removeBtn.setAttribute('class', 'book-button');
     removeBtn.textContent = 'Remove';
-    removeBtn.addEventListener('click', (event) => {
-        removeBook(index);
-        // Remove book from card-container
-        // const targetBookCard = event.target.parentElement.parentElement;
-        // cardContainer.removeChild(targetBookCard);
-    });
+    removeBtn.addEventListener('click', (e) => removeBook(index));
 
     const readBtn = document.createElement('button');
     readBtn.setAttribute('class', 'book-button');
     readBtn.setAttribute('id', 'read-button');
     readBtn.textContent = 'Read';
-    // readBtn.addEventListener('click', (event) => {
-    //     targetBookCard = event.target.parentElement.parentElement;
-    //     updateReadStatus(targetBookCard);
-    // });
-    readBtn.addEventListener('click', (e) => {
-        updateReadStatus(book, bookCardRead);
-    });
-
+    readBtn.addEventListener('click', (e) =>
+        updateReadStatus(book, bookCardRead)
+    );
 
     bookCardButtons.appendChild(removeBtn);
     bookCardButtons.appendChild(readBtn);
@@ -112,14 +103,6 @@ function createBookCard(book, index) {
 
     return bookCard;
 }
-
-// function updateReadStatus(bookCard) {
-//     let bookIndex = bookCard.dataset.index;
-//     let bookCardRead = bookCard.querySelector('.book-card-read');
-//     let book = myLibrary[bookIndex];
-//     book.toggleRead();
-//     bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
-// }
 
 function updateReadStatus(book, bookCardRead) {
     book.toggleRead();
