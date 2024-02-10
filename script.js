@@ -47,8 +47,16 @@ function displayBook(book) {
     cardContainer.appendChild(createBookCard(book));
 }
 
+function displayBooks() {
+    cardContainer.innerHTML = '';
+    myLibrary.forEach((book) => cardContainer.appendChild(createBookCard(book)))
+}
+
+
 function createBookCard(book) {
     const bookCard = document.createElement('div');
+    bookCard.setAttribute('class', 'book-card');
+
     const bookCardTitle = document.createElement('p');
     const bookCardAuthor = document.createElement('p');
     const bookCardPages = document.createElement('p');
@@ -57,7 +65,6 @@ function createBookCard(book) {
     // Associate card wih index of book in myLibrary
     bookCard.dataset.index = myLibrary.length - 1;
 
-    bookCard.setAttribute('class', 'book-card');
     bookCardTitle.setAttribute('class', 'book-card-title');
     bookCardAuthor.setAttribute('class', 'book-card-author');
     bookCardPages.setAttribute('class', 'book-card-pages');
@@ -104,6 +111,7 @@ function createBookCard(book) {
     return bookCard;
 }
 
+
 function updateReadStatus(bookCard) {
     let bookIndex = bookCard.dataset.index;
     let bookCardRead = bookCard.querySelector('.book-card-read');
@@ -147,9 +155,3 @@ bookForm.addEventListener('keypress', (event) => {
         }
     }
 });
-
-// This function will be more useful once we are pulling data from a db
-// It will show the initial books in db, when page loads
-// function displayBooks() {
-//     myLibrary.forEach((book) => libraryBody.appendChild(createBookRow(book)))
-// }
