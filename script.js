@@ -63,7 +63,7 @@ function createBookCard(book, index) {
     const bookCardRead = document.createElement('p');
 
     // Associate card wih index of book in myLibrary
-    bookCard.dataset.index = myLibrary.length - 1;
+    bookCard.dataset.index = index;
 
     bookCardTitle.setAttribute('class', 'book-card-title');
     bookCardAuthor.setAttribute('class', 'book-card-author');
