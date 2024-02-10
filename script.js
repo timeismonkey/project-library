@@ -35,7 +35,9 @@ function addBookToLibrary() {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 
-    return book;
+    const index = myLibrary.length - 1;
+
+    return [book, index];
 }
 
 function removeBookFromLibrary(bookCard) {
@@ -53,7 +55,7 @@ function displayBooks() {
 }
 
 
-function createBookCard(book) {
+function createBookCard(book, index) {
     const bookCard = document.createElement('div');
     bookCard.setAttribute('class', 'book-card');
 
