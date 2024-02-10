@@ -33,14 +33,14 @@ function addBookToLibrary() {
     const read = bookForm.querySelector('#read').value === 'no' ? false : true;
 
     const book = new Book(title, author, pages, read);
-    const index = myLibrary.push(book); - 1;
+    const index = myLibrary.push(book) - 1;
 
     return [book, index];
 }
 
-function removeBookFromLibrary(bookCard) {
-    let bookIndex = bookCard.dataset.index;
-    myLibrary.splice(bookIndex, 1);
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    displayBooks();
 }
 
 function displayBook(book, index) {
@@ -49,7 +49,7 @@ function displayBook(book, index) {
 
 function displayBooks() {
     cardContainer.innerHTML = '';
-    myLibrary.forEach((book) => cardContainer.appendChild(createBookCard(book)))
+    myLibrary.forEach((book, index) => cardContainer.appendChild(createBookCard(book, index)))
 }
 
 
@@ -57,6 +57,7 @@ function createBookCard(book, index) {
     const bookCard = document.createElement('div');
     bookCard.setAttribute('class', 'book-card');
     bookCard.dataset.index = index;
+    console.log(index);
 
     const bookCardTitle = document.createElement('p');
     bookCardTitle.setAttribute('class', 'book-card-title');
@@ -86,20 +87,24 @@ function createBookCard(book, index) {
     removeBtn.setAttribute('class', 'book-button');
     removeBtn.textContent = 'Remove';
     removeBtn.addEventListener('click', (event) => {
-        const targetBookCard = event.target.parentElement.parentElement;
-        removeBookFromLibrary(targetBookCard);
+        removeBook(index);
         // Remove book from card-container
-        cardContainer.removeChild(targetBookCard);
+        // const targetBookCard = event.target.parentElement.parentElement;
+        // cardContainer.removeChild(targetBookCard);
     });
 
     const readBtn = document.createElement('button');
     readBtn.setAttribute('class', 'book-button');
     readBtn.setAttribute('id', 'read-button');
     readBtn.textContent = 'Read';
-    readBtn.addEventListener('click', (event) => {
-        targetBookCard = event.target.parentElement.parentElement;
-        updateReadStatus(targetBookCard);
+    // readBtn.addEventListener('click', (event) => {
+    //     targetBookCard = event.target.parentElement.parentElement;
+    //     updateReadStatus(targetBookCard);
+    // });
+    readBtn.addEventListener('click', (e) => {
+        updateReadStatus(book, bookCardRead);
     });
+
 
     bookCardButtons.appendChild(removeBtn);
     bookCardButtons.appendChild(readBtn);
@@ -108,11 +113,15 @@ function createBookCard(book, index) {
     return bookCard;
 }
 
+// function updateReadStatus(bookCard) {
+//     let bookIndex = bookCard.dataset.index;
+//     let bookCardRead = bookCard.querySelector('.book-card-read');
+//     let book = myLibrary[bookIndex];
+//     book.toggleRead();
+//     bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
+// }
 
-function updateReadStatus(bookCard) {
-    let bookIndex = bookCard.dataset.index;
-    let bookCardRead = bookCard.querySelector('.book-card-read');
-    let book = myLibrary[bookIndex];
+function updateReadStatus(book, bookCardRead) {
     book.toggleRead();
     bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
 }
@@ -126,6 +135,8 @@ addBookBtn.addEventListener('click', () => {
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const [book, index] = addBookToLibrary();
+    console.log(book);
+    console.log(index);
     displayBook(book, index);
 });
 
