@@ -130,8 +130,8 @@ addBookBtn.addEventListener('click', () => {
 // Deal with submission of bookForm data
 bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    let book = addBookToLibrary();
-    displayBook(book);
+    const [book, index] = addBookToLibrary();
+    displayBook(book, index);
 });
 
 cancelModal.addEventListener('click', (e) => {
