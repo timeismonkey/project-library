@@ -38,7 +38,7 @@ function addBookToLibrary() {
     return book;
 }
 
-function removeBookFromLibrary(bookElement) {
+function removeBookFromLibrary(bookCard) {
     let bookIndex = bookCard.dataset.index;
     myLibrary.splice(bookIndex, 1);
 }
@@ -53,6 +53,9 @@ function createBookCard(book) {
     const bookCardAuthor = document.createElement('p');
     const bookCardPages = document.createElement('p');
     const bookCardRead = document.createElement('p');
+
+    // Associate card wih index of book in myLibrary
+    bookCard.dataset.index = myLibrary.length - 1;
 
     bookCard.setAttribute('class', 'book-card');
     bookCardTitle.setAttribute('class', 'book-card-title');
@@ -84,32 +87,34 @@ function createBookCard(book) {
 
     removeBtn.addEventListener('click', (event) => {
         const targetBookCard = event.target.parentElement.parentElement;
-        console.log(targetBookCard);
         removeBookFromLibrary(targetBookCard);
         // Remove book from card-container
         cardContainer.removeChild(targetBookCard);
     });
-    readBtn.addEventListener('click', updateReadStatus);
+    readBtn.addEventListener('click', (event) => {
+        targetBookCard = event.target.parentElement.parentElement;
+        updateReadStatus(targetBookCard);
+    });
 
-    bookCard.appendChild(removeBtn);
-    bookCard.appendChild(readBtn);
+    bookCardButtons.appendChild(removeBtn);
+    bookCardButtons.appendChild(readBtn);
 
-    return bookCard
-} 
+    bookCard.appendChild(bookCardButtons);
 
-function updateReadStatus(event) {
-    let bookRow = event.target.parentElement;
-    let bookIndex = bookRow.dataset.index;
-    let readTableDataElement = bookRow.querySelector('#read-table-data');
-    let book = myLibrary[bookIndex];
-    book.toggleRead();
-    readTableDataElement.textContent = book.read ? 'Yes' : 'No';
+    return bookCard;
 }
 
+function updateReadStatus(bookCard) {
+    let bookIndex = bookCard.dataset.index;
+    let bookCardRead = bookCard.querySelector('.book-card-read');
+    let book = myLibrary[bookIndex];
+    book.toggleRead();
+    bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
+}
 
 addBookBtn.addEventListener('click', () => {
     bookForm.reset();
-    bookDialog.showModal()
+    bookDialog.showModal();
 });
 
 // Deal with submission of bookForm data
