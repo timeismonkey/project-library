@@ -1,7 +1,28 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url(./fonts/Roboto-Regular.ttf);
+}
+
+:root {
+    --main-font-family: 'Roboto', sans-serif;
+    --main-color: #E8C872;
+    --secondary-color: #637A9F;
+    --tertiary-color: #FFF3CF;
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: var(--main-font-family);
+}
+
+button {
+    /* appearance: none; */
+    border: 5px solid var(--tertiary-color);
+    border-radius: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--tertiary-color);
 }
 
 .main {
@@ -10,8 +31,28 @@
 }
 
 .header {
-    
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--main-color);
+    padding: 2rem;
+    padding-right: clamp(1rem, 5vw, 4rem);
 }
+
+.heading {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.button-container {
+    align-self: center;
+}
+
+#add-book {
+    padding: .5rem 2rem;
+    font-size: clamp(1rem, 3vw, 1.7rem);
+}
+
 .card-container {
     flex: 1;
 }
