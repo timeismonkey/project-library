@@ -64,25 +64,30 @@ function createBookCard(book, index) {
     bookCard.setAttribute('class', 'book-card');
     bookCard.dataset.index = index;
 
+    const bookInfoCont = document.createElement('div');
+    bookInfoCont.setAttribute('class', 'book-info-cont');
+
     const bookCardTitle = document.createElement('p');
     bookCardTitle.setAttribute('class', 'book-card-title');
     bookCardTitle.textContent = `Title: ${book.title}`;
-    bookCard.appendChild(bookCardTitle);
+    bookInfoCont.appendChild(bookCardTitle);
 
     const bookCardAuthor = document.createElement('p');
     bookCardAuthor.setAttribute('class', 'book-card-author');
     bookCardAuthor.textContent = `Author: ${book.author}`;
-    bookCard.appendChild(bookCardAuthor);
+    bookInfoCont.appendChild(bookCardAuthor);
 
     const bookCardPages = document.createElement('p');
     bookCardPages.setAttribute('class', 'book-card-pages');
     bookCardPages.textContent = `Pages: ${book.pages}`;
-    bookCard.appendChild(bookCardPages);
+    bookInfoCont.appendChild(bookCardPages);
 
     const bookCardRead = document.createElement('p');
     bookCardRead.setAttribute('class', 'book-card-read');
     bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
-    bookCard.appendChild(bookCardRead);
+    bookInfoCont.appendChild(bookCardRead);
+
+    bookCard.appendChild(bookInfoCont);
 
     const bookCardButtons = document.createElement('div');
     bookCardButtons.setAttribute('class', 'book-card-buttons');
