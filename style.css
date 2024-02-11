@@ -68,13 +68,9 @@ button {
 .book-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
+    justify-content: space-between;
+    padding: 4rem 2rem 3rem 2rem;
     height: 300px;
     border-radius: 1rem;
     background-color: var(--secondary-color);
 }
-
-/* .book-card-buttons {
-
-} */
