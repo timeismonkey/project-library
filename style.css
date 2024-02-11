@@ -18,13 +18,11 @@
 }
 
 button {
-    /* appearance: none; */
-    /* border: 5px solid var(--tertiary-color); */
-    border: var(--secondary-color);
+    font-size: 1rem;
+    padding: .5rem 1rem;
     border-radius: 1rem;
-    /* background-color: var(--secondary-color); */
+    border: none;
     background-color: var(--tertiary-color);
-    /* color: var(--tertiary-color); */
     color: var(--secondary-color);
 }
 
@@ -44,7 +42,6 @@ button {
 .heading {
     font-size: 3rem;
     font-weight: 700;
-    /* color: var(--secondary-color); */
     color: var(--tertiary-color);
 }
 
@@ -55,6 +52,7 @@ button {
 #add-book {
     padding: .5rem 2rem;
     font-size: clamp(1rem, 3vw, 1.7rem);
+    border: 5px solid var(--secondary-color);
 }
 
 .card-container {
@@ -68,5 +66,5 @@ button {
 }
 
 .book-card {
-    background-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
 }
