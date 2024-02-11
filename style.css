@@ -6,8 +6,8 @@
 :root {
     --main-font-family: 'Roboto', sans-serif;
     --main-color: #E8C872;
-    --secondary-color: #637A9F;
-    --tertiary-color: #FFF3CF;
+    --secondary-color: #FFF3CF;
+    --tertiary-color: #637A9F;
 }
 
 * {
@@ -19,10 +19,13 @@
 
 button {
     /* appearance: none; */
-    border: 5px solid var(--tertiary-color);
+    /* border: 5px solid var(--tertiary-color); */
+    border: var(--secondary-color);
     border-radius: 1rem;
-    background-color: var(--secondary-color);
-    color: var(--tertiary-color);
+    /* background-color: var(--secondary-color); */
+    background-color: var(--tertiary-color);
+    /* color: var(--tertiary-color); */
+    color: var(--secondary-color);
 }
 
 .main {
@@ -41,7 +44,8 @@ button {
 .heading {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
+    color: var(--tertiary-color);
 }
 
 .button-container {
@@ -54,14 +58,15 @@ button {
 }
 
 .card-container {
-    flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    grid-template-columns: repeat(auto-fit, minmax(250px, .20fr));
     /* align-content: start; */
-    /* justify-items: center; */
-    justify-items: start;
+    justify-items: center;
+    /* justify-items: start; */
+    /* justify-content: start; */
 }
 
 .book-card {
-
+    background-color: var(--tertiary-color);
 }
