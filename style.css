@@ -55,4 +55,13 @@ button {
 
 .card-container {
     flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* align-content: start; */
+    /* justify-items: center; */
+    justify-items: start;
+}
+
+.book-card {
+
 }

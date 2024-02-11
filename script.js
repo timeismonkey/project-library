@@ -137,7 +137,13 @@ bookForm.addEventListener('keypress', (event) => {
         event.preventDefault();
 
         if (bookForm.reportValidity()) {
-            bookForm.dispatchEvent(new Event('submit'));
+            // Create a new submit event
+            const submitEvent = new Event('submit', {
+                cancelable: true,
+            });
+
+            // Dispatch the submit event on the form element
+            bookForm.dispatchEvent(submitEvent);
             bookDialog.close();
         }
     }
