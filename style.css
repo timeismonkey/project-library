@@ -83,6 +83,11 @@ button {
     font-size: 1.5rem;
 }
 
+.book-info-heading {
+    color: var(--tertiary-color);
+    font-weight: 700;
+}
+
 .book-card-buttons {
     display: flex;
     gap: 1rem;
