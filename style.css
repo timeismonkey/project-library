@@ -58,6 +58,7 @@ button {
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+    /* grid-template-columns: repeat(auto-fill, minmax(250px, 300px)); */
     justify-items: center;
     margin-top: 2rem;
 }
@@ -71,16 +72,26 @@ button {
 .book-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 4rem 2rem 3rem 2rem;
-    height: 300px;
+    gap: 1rem;
+    padding: 2rem 2rem 2rem 1rem;
     border-radius: 1rem;
     background-color: var(--secondary-color);
     border: 5px solid var(--primary-color);
 }
 
 .book-info-cont {
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    justify-content: space-between;
     font-size: 1.5rem;
+    text-align: center;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
 }
 
 .book-info-heading {
