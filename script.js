@@ -69,22 +69,22 @@ function createBookCard(book, index) {
 
     const bookCardTitle = document.createElement('p');
     bookCardTitle.setAttribute('class', 'book-card-title');
-    bookCardTitle.textContent = `Title: ${book.title}`;
+    bookCardTitle.innerHTML = `<span class='book-info' id='title'>Title:</span> ${book.title}`;
     bookInfoCont.appendChild(bookCardTitle);
 
     const bookCardAuthor = document.createElement('p');
     bookCardAuthor.setAttribute('class', 'book-card-author');
-    bookCardAuthor.textContent = `Author: ${book.author}`;
+    bookCardAuthor.innerHTML = `<span class='book-info' id='author'>Author:</span> ${book.author}`;
     bookInfoCont.appendChild(bookCardAuthor);
 
     const bookCardPages = document.createElement('p');
     bookCardPages.setAttribute('class', 'book-card-pages');
-    bookCardPages.textContent = `Pages: ${book.pages}`;
+    bookCardPages.innerHTML = `<span class='book-info' id='pages'>Pages:</span> ${book.pages}`;
     bookInfoCont.appendChild(bookCardPages);
 
     const bookCardRead = document.createElement('p');
     bookCardRead.setAttribute('class', 'book-card-read');
-    bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
+    bookCardRead.innerHTML = `<span class='book-info' id='read'>Read:</span> ${(book.read ? 'Yes' : 'No')}`;
     bookInfoCont.appendChild(bookCardRead);
 
     bookCard.appendChild(bookInfoCont);

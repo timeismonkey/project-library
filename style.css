@@ -79,6 +79,10 @@ button {
     border: 5px solid var(--primary-color);
 }
 
+.book-info-cont {
+    font-size: 1.5rem;
+}
+
 .book-card-buttons {
     display: flex;
     gap: 1rem;
