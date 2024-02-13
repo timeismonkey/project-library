@@ -33,6 +33,8 @@ dialog {
     transform: translate(-50%, -50%);
     border: none;
     padding: 2rem;
+    background-color: var(--secondary-color);
+    border-radius: 1rem;
 }
 
 fieldset {
@@ -129,6 +131,11 @@ fieldset > p:nth-child(-n+4) {
     gap: 1rem;
 }
 
-.modal-btns {
+/* Dialog styling */
+#book-dialog::backdrop {
+    background: rgb(0 0 0 / .5);
+}
+
+.book-form {
     text-align: center;
 }
