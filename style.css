@@ -5,9 +5,9 @@
 
 :root {
     --main-font-family: 'Roboto', sans-serif;
-    --primary-color: #E8C872;
-    --secondary-color: #FFF3CF;
-    --tertiary-color: #637A9F;
+    --primary-color: #e8c872;
+    --secondary-color: #fff3cf;
+    --tertiary-color: #637a9f;
 }
 
 * {
@@ -19,7 +19,7 @@
 
 button {
     font-size: 1rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 1rem;
     border: none;
     background-color: var(--tertiary-color);
@@ -45,7 +45,7 @@ fieldset {
     margin-bottom: 1rem;
 }
 
-fieldset > p:nth-child(-n+4) {
+fieldset > p:nth-child(-n + 4) {
     display: flex;
     justify-content: space-between;
     gap: 10px;
@@ -75,7 +75,7 @@ fieldset > p:nth-child(-n+4) {
 }
 
 #add-book {
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     font-size: clamp(1rem, 3vw, 1.7rem);
     border: 5px solid var(--secondary-color);
 }
@@ -108,7 +108,7 @@ fieldset > p:nth-child(-n+4) {
 
 .book-info-cont {
     display: flex;
-    gap: .5rem;
+    gap: 0.5rem;
     flex-direction: column;
     justify-content: space-between;
     font-size: 1.5rem;
@@ -118,7 +118,7 @@ fieldset > p:nth-child(-n+4) {
 .book-info {
     display: flex;
     flex-direction: column;
-    gap: .3rem;
+    gap: 0.3rem;
 }
 
 .book-info-heading {
@@ -133,7 +133,7 @@ fieldset > p:nth-child(-n+4) {
 
 /* Dialog styling */
 #book-dialog::backdrop {
-    background: rgb(0 0 0 / .5);
+    background: rgb(0 0 0 / 0.5);
 }
 
 .book-form {

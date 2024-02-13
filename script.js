@@ -45,7 +45,9 @@ function removeBook(index) {
 
 function updateReadStatus(book, bookCardRead) {
     book.toggleRead();
-    bookCardRead.innerHTML = `<span class='book-info-heading' id='card-read'>Read:</span> ${(book.read ? 'Yes' : 'No')}`;
+    bookCardRead.innerHTML = `<span class='book-info-heading' id='card-read'>Read:</span> ${
+        book.read ? 'Yes' : 'No'
+    }`;
 }
 
 function displayBook(book, index) {
@@ -84,7 +86,9 @@ function createBookCard(book, index) {
 
     const bookCardRead = document.createElement('p');
     bookCardRead.setAttribute('class', 'book-info');
-    bookCardRead.innerHTML = `<span class='book-info-heading' id='card-read'>Read:</span> ${(book.read ? 'Yes' : 'No')}`;
+    bookCardRead.innerHTML = `<span class='book-info-heading' id='card-read'>Read:</span> ${
+        book.read ? 'Yes' : 'No'
+    }`;
     bookInfoCont.appendChild(bookCardRead);
 
     bookCard.appendChild(bookInfoCont);
