@@ -39,10 +39,11 @@ fieldset {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 1rem;
     margin-bottom: 1rem;
 }
 
-fieldset > p {
+fieldset > p:nth-child(-n+4) {
     display: flex;
     justify-content: space-between;
     gap: 10px;
@@ -126,4 +127,8 @@ fieldset > p {
 .book-card-buttons {
     display: flex;
     gap: 1rem;
+}
+
+.modal-btns {
+    text-align: center;
 }
