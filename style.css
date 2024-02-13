@@ -58,12 +58,12 @@ button {
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, auto));
-    /* grid-template-columns: repeat(auto-fill, minmax(250px, 300px)); */
+    gap: 1rem;
     justify-items: center;
     margin-top: 2rem;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 515px) {
     .card-container {
         justify-content: center;
     }
@@ -72,11 +72,13 @@ button {
 .book-card {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1rem;
-    padding: 2rem 2rem 2rem 1rem;
+    padding: 2rem;
     border-radius: 1rem;
     background-color: var(--secondary-color);
     border: 5px solid var(--primary-color);
+    width: 250px;
 }
 
 .book-info-cont {
