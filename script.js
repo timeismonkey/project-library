@@ -30,7 +30,7 @@ function addBookToLibrary() {
     const title = inputs[0].value;
     const author = inputs[1].value;
     const pages = inputs[2].value;
-    const read = bookForm.querySelector('#read').value === 'no' ? false : true;
+    const read = inputs[3].checked;
 
     const book = new Book(title, author, pages, read);
     const index = myLibrary.push(book) - 1;
@@ -45,7 +45,7 @@ function removeBook(index) {
 
 function updateReadStatus(book, bookCardRead) {
     book.toggleRead();
-    bookCardRead.textContent = book.read ? 'Read: Yes' : 'Read: No';
+    bookCardRead.innerHTML = `<span class='book-info-heading' id='card-read'>Read:</span> ${(book.read ? 'Yes' : 'No')}`;
 }
 
 function displayBook(book, index) {
