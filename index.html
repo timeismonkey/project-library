@@ -16,9 +16,12 @@
             </div>
 
             <div class="card-container"></div>
+        </div>
 
-            <dialog id="book-dialog">
-                <form id="book-form">
+        <dialog id="book-dialog">
+            <form id="book-form">
+                <fieldset id="book-inputs">
+                    <legend>Book</legend>
                     <p>
                         <label for="title">Title:</label>
                         <input type="text" name="title" id="title" required focus/>
@@ -38,17 +41,17 @@
                             <option value="no" selected>No</option>
                         </select>
                     </p>
-                    <div>
-                        <button id="cancel-button" value="cancel">
-                            Cancel
-                        </button>
-                        <button id="confirm-button" value="default">
-                            Confirm
-                        </button>
-                    </div>
-                </form>
-            </dialog>
-        </div>
+                </fieldset>
+                <div>
+                    <button id="cancel-button" value="cancel">
+                        Cancel
+                    </button>
+                    <button id="confirm-button" value="default">
+                        Confirm
+                    </button>
+                </div>
+            </form>
+        </dialog>
         <script src="script.js"></script>
     </body>
 </html>

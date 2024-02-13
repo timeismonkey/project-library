@@ -26,6 +26,28 @@ button {
     color: var(--secondary-color);
 }
 
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    padding: 2rem;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+fieldset > p {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .main {
     display: flex;
     flex-direction: column;
@@ -60,7 +82,7 @@ button {
     grid-template-columns: repeat(auto-fill, minmax(250px, auto));
     gap: 1rem;
     justify-items: center;
-    margin-top: 2rem;
+    padding: 2rem 1rem;
 }
 
 @media screen and (max-width: 515px) {
