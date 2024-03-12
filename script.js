@@ -8,22 +8,28 @@ const confirmModal = document.querySelector('#confirm-button');
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info() {
+        return (this.read)
+            ? `${this.title} by ${this.author}, ${this.pages} pages, read`
+            : `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
+    }
+
+    get read() {
+        return this._read;
+    }   
+    
+    set read(value) {
+        this._read = value;
+    }
 }
-
-Book.prototype.info = function () {
-    return read
-        ? `${this.title} by ${this.author}, ${this.pages} pages, read`
-        : `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
-};
-
-Book.prototype.toggleRead = function () {
-    this.read = !this.read;
-};
 
 function addBookToLibrary() {
     const inputs = bookForm.querySelectorAll('input');
@@ -44,7 +50,8 @@ function removeBook(index) {
 }
 
 function updateReadStatus(book, bookCardRead) {
-    book.toggleRead();
+    // book.toggleRead();
+    book.read = !(book.read);
     bookCardRead.innerHTML = `<span class='book-info-heading' id='card-read'>Read:</span> ${
         book.read ? 'Yes' : 'No'
     }`;
