@@ -50,7 +50,6 @@ function removeBook(index) {
 }
 
 function updateReadStatus(book, bookCardRead) {
-    // book.toggleRead();
     book.read = !(book.read);
     bookCardRead.innerHTML = `<span class='book-info-heading' id='card-read'>Read:</span> ${
         book.read ? 'Yes' : 'No'
